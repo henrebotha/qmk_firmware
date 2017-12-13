@@ -1,4 +1,4 @@
-// v1.1
+// v1.2
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -16,17 +16,28 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD,
+  TMUX_A,
+  TMUX_C,
+  TMUX_D,
+  TMUX_H,
+  TMUX_J,
+  TMUX_K,
+  TMUX_L,
+  TMUX_Z,
+  TMUX_SH,
+  TMUX_SV,
 
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+  // home layer
   [0] = KEYMAP(
       KC_GRAVE,         KC_1,     KC_2,    KC_3,     KC_4,      KC_5,             TG(1),
       KC_TAB,           KC_Q,     KC_W,    KC_E,     KC_R,      KC_T,             LCTL(KC_B),
       CTL_T(KC_ESCAPE), KC_A,     KC_S,    KC_D,     KC_F,      KC_G,
       KC_LGUI,          KC_Z,     KC_X,    KC_C,     KC_V,      KC_B,             KC_MINUS,
-      OSL(2),           KC_TRNS,  KC_TRNS, KC_MINUS, OSL(2),
+      OSL(2),           KC_TRNS,  KC_TRNS, OSL(3),   OSL(2),
 
       KC_MUTE,          KC_VOLU,
       KC_VOLD,
@@ -43,6 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_RALT,          KC_ENTER, KC_RSHIFT
   ),
 
+  // gaming layer (to be completed)
   [1] = KEYMAP(
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TO(0),
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -65,6 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
+  // function layer
   [2] = KEYMAP(
       KC_ESCAPE, KC_F1,     KC_F2,       KC_F3,    KC_F4,       KC_F5,   KC_TRNS,
       KC_TRNS,   KC_PGUP,   KC_HOME,     KC_UP,    KC_END,      KC_TRNS, KC_TRNS,
@@ -87,6 +100,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,   KC_TRNS,   KC_TRNS
   ),
 
+  // tmux layer
+  [3] = KEYMAP(
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, TMUX_A,  KC_TRNS, TMUX_D,  KC_TRNS, KC_TRNS,
+      KC_TRNS, TMUX_Z,  KC_TRNS, TMUX_C,  KC_TRNS, LCTL(KC_B), TMUX_SH,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,   KC_TRNS,
+
+      KC_TRNS, KC_TRNS,
+      KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS,
+
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_SV,
+      TMUX_H,  TMUX_J,  TMUX_K,  TMUX_L,  KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+
+      KC_TRNS, KC_TRNS,
+      KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS
+  ),
 };
 
 const uint16_t PROGMEM fn_actions[] = {
@@ -132,6 +167,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_mode(1);
       }
       return false;
+      break;
+    case TMUX_A:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "a");
+      }
+      break;
+    case TMUX_C:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "c");
+      }
+      break;
+    case TMUX_D:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "d");
+      }
+      break;
+    case TMUX_H:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "h");
+      }
+      break;
+    case TMUX_J:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "j");
+      }
+      break;
+    case TMUX_K:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "k");
+      }
+      break;
+    case TMUX_L:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "l");
+      }
+      break;
+    case TMUX_Z:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "z");
+      }
+      break;
+    case TMUX_SH:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "-");
+      }
+      break;
+    case TMUX_SV:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "|");
+      }
       break;
 
   }
