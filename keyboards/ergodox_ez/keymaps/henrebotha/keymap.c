@@ -1,4 +1,4 @@
-// v1.2.3
+// v1.2.4
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -35,6 +35,8 @@ enum custom_keycodes {
   TMUX_L,
   TMUX_S,
   TMUX_Z,
+  TMUX_ML,
+  TMUX_MR,
   TMUX_SH,
   TMUX_SV,
 
@@ -114,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // tmux layer
   [3] = KEYMAP(
       KC_TRNS, TMUX_1,  TMUX_2,  TMUX_3,  TMUX_4,  TMUX_5,     KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_ML,
       KC_TRNS, TMUX_A,  TMUX_S,  TMUX_D,  KC_TRNS, KC_TRNS,
       KC_TRNS, TMUX_Z,  KC_TRNS, TMUX_C,  KC_TRNS, LCTL(KC_B), TMUX_SH,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,   KC_TRNS,
@@ -124,10 +126,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS, KC_TRNS,
 
       KC_TRNS, TMUX_6,  TMUX_7,  TMUX_8,  TMUX_9,  TMUX_0,     KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_SV,
-      TMUX_H,  TMUX_J,  TMUX_K,  TMUX_L,  KC_TRNS, KC_TRNS,
+      TMUX_MR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_SV,
+               TMUX_H,  TMUX_J,  TMUX_K,  TMUX_L,  KC_TRNS,    KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
-      KC_TRNS, KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS,
+                        KC_TRNS, KC_NO,   KC_TRNS, KC_TRNS,    KC_TRNS,
 
       KC_TRNS, KC_TRNS,
       KC_TRNS,
@@ -272,6 +274,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TMUX_Z:
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL("b") "z");
+      }
+      break;
+    case TMUX_ML:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "{");
+      }
+      break;
+    case TMUX_MR:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "}");
       }
       break;
     case TMUX_SH:
