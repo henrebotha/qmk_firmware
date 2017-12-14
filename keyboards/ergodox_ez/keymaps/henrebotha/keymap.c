@@ -1,4 +1,4 @@
-// v1.2
+// v1.2.1
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -23,6 +23,7 @@ enum custom_keycodes {
   TMUX_J,
   TMUX_K,
   TMUX_L,
+  TMUX_S,
   TMUX_Z,
   TMUX_SH,
   TMUX_SV,
@@ -104,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [3] = KEYMAP(
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
-      KC_TRNS, TMUX_A,  KC_TRNS, TMUX_D,  KC_TRNS, KC_TRNS,
+      KC_TRNS, TMUX_A,  TMUX_S,  TMUX_D,  KC_TRNS, KC_TRNS,
       KC_TRNS, TMUX_Z,  KC_TRNS, TMUX_C,  KC_TRNS, LCTL(KC_B), TMUX_SH,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_NO,   KC_TRNS,
 
@@ -201,6 +202,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TMUX_L:
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL("b") "l");
+      }
+      break;
+    case TMUX_S:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "s");
       }
       break;
     case TMUX_Z:
