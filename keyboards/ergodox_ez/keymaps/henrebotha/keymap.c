@@ -1,4 +1,4 @@
-// v1.2.2
+// v1.2.3
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,          KC_Y,     KC_U,    KC_I,     KC_O,      KC_P,             KC_BSLASH,
       KC_H,             KC_J,     KC_K,    KC_L,     KC_SCOLON, RCTL_T(KC_QUOTE),
       KC_EQUAL,         KC_N,     KC_M,    KC_COMMA, KC_DOT,    KC_SLASH,         KC_RGUI,
-      OSL(2),           KC_EQUAL, KC_TRNS, KC_TRNS,  OSL(2),
+      OSL(2),           OSL(3),   KC_TRNS, KC_TRNS,  OSL(2),
 
       KC_MPRV,          KC_MNXT,
       KC_MPLY,
@@ -127,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_SV,
       TMUX_H,  TMUX_J,  TMUX_K,  TMUX_L,  KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_NO,   KC_TRNS, KC_TRNS, KC_TRNS,
 
       KC_TRNS, KC_TRNS,
       KC_TRNS,
