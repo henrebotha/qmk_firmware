@@ -1,4 +1,4 @@
-// v1.2.1
+// v1.2.2
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -16,6 +16,16 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD,
+  TMUX_0,
+  TMUX_1,
+  TMUX_2,
+  TMUX_3,
+  TMUX_4,
+  TMUX_5,
+  TMUX_6,
+  TMUX_7,
+  TMUX_8,
+  TMUX_9,
   TMUX_A,
   TMUX_C,
   TMUX_D,
@@ -103,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // tmux layer
   [3] = KEYMAP(
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, TMUX_1,  TMUX_2,  TMUX_3,  TMUX_4,  TMUX_5,     KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
       KC_TRNS, TMUX_A,  TMUX_S,  TMUX_D,  KC_TRNS, KC_TRNS,
       KC_TRNS, TMUX_Z,  KC_TRNS, TMUX_C,  KC_TRNS, LCTL(KC_B), TMUX_SH,
@@ -113,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS,
 
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, TMUX_6,  TMUX_7,  TMUX_8,  TMUX_9,  TMUX_0,     KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_SV,
       TMUX_H,  TMUX_J,  TMUX_K,  TMUX_L,  KC_TRNS, KC_TRNS,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
@@ -168,6 +178,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_mode(1);
       }
       return false;
+      break;
+    case TMUX_0:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "0");
+      }
+      break;
+    case TMUX_1:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "1");
+      }
+      break;
+    case TMUX_2:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "2");
+      }
+      break;
+    case TMUX_3:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "3");
+      }
+      break;
+    case TMUX_4:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "4");
+      }
+      break;
+    case TMUX_5:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "5");
+      }
+      break;
+    case TMUX_6:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "6");
+      }
+      break;
+    case TMUX_7:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "7");
+      }
+      break;
+    case TMUX_8:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "8");
+      }
+      break;
+    case TMUX_9:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "9");
+      }
       break;
     case TMUX_A:
       if (record->event.pressed) {
