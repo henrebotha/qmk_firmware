@@ -1,4 +1,4 @@
-// v1.2.4
+// v1.2.5
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -8,7 +8,6 @@
 #include "keymap_german.h"
 #include "keymap_nordic.h"
 
-#define TAPPING_TOGGLE 1
 #define PERMISSIVE_HOLD
 
 enum custom_keycodes {
@@ -58,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       RESET,            KC_6,     KC_7,    KC_8,     KC_9,      KC_0,             KC_BSPACE,
       KC_TRNS,          KC_Y,     KC_U,    KC_I,     KC_O,      KC_P,             KC_BSLASH,
-      KC_H,             KC_J,     KC_K,    KC_L,     KC_SCOLON, RCTL_T(KC_QUOTE),
+      KC_H,             KC_J,     KC_K,    KC_L,     KC_SCOLON, KC_QUOTE,
       KC_EQUAL,         KC_N,     KC_M,    KC_COMMA, KC_DOT,    KC_SLASH,         KC_RGUI,
       OSL(2),           OSL(3),   KC_TRNS, KC_TRNS,  OSL(2),
 
