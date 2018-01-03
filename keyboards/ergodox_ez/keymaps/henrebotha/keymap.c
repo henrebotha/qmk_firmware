@@ -1,4 +1,8 @@
 // v1.3
+//
+// TODO:
+// * Make Tmux layer respect Shift. E.g. `/` shouldn't send `C-?`, it should
+//   send `C-/`.
 
 #include "ergodox_ez.h"
 #include "debug.h"
@@ -35,6 +39,7 @@ enum custom_keycodes {
   TMUX_S,
   TMUX_Z,
   TMUX_CL,
+  TMUX_HL,
   TMUX_ML,
   TMUX_MR,
   TMUX_SH,
@@ -128,7 +133,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TRNS, TMUX_6,  TMUX_7,  TMUX_8,  TMUX_9,  TMUX_0,     KC_TRNS,
       TMUX_MR, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_SV,
                TMUX_H,  TMUX_J,  TMUX_K,  TMUX_L,  TMUX_CL,    KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TMUX_HL,    KC_TRNS,
                         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,
 
       KC_TRNS, KC_TRNS,
@@ -270,6 +275,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TMUX_CL:
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL("b") ":");
+      }
+      break;
+    case TMUX_HL:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "?");
       }
       break;
     case TMUX_ML:
