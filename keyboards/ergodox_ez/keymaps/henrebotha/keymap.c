@@ -37,6 +37,7 @@ enum custom_keycodes {
   TMUX_K,
   TMUX_L,
   TMUX_S,
+  TMUX_W,
   TMUX_Z,
   TMUX_CL,
   TMUX_HL,
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // tmux layer
   [3] = KEYMAP(
       KC_TRNS, TMUX_1,  TMUX_2,  TMUX_3,  TMUX_4,  TMUX_5,     KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_ML,
+      KC_TRNS, KC_TRNS, TMUX_W,  KC_TRNS, KC_TRNS, KC_TRNS,    TMUX_ML,
       KC_TRNS, TMUX_A,  TMUX_S,  TMUX_D,  KC_TRNS, KC_TRNS,
       KC_TRNS, TMUX_Z,  KC_TRNS, TMUX_C,  KC_TRNS, LCTL(KC_B), TMUX_SH,
       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -265,6 +266,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TMUX_S:
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL("b") "s");
+      }
+      break;
+    case TMUX_W:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b") "W");
       }
       break;
     case TMUX_Z:
